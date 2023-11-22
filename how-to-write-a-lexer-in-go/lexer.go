@@ -16,14 +16,15 @@ const (
 	IDENT
 	INT
 	SEMI // ;
+	STRING
 
 	// Infix ops
-	ADD // +
-	SUB // -
-	MUL // *
-	DIV // /
-
-	ASSIGN // =
+	ADD     // +
+	SUB     // -
+	MUL     // *
+	DIV     // /
+	COMILLA // "
+	ASSIGN  // =
 )
 
 var tokens = []string{
@@ -32,12 +33,13 @@ var tokens = []string{
 	IDENT:   "IDENT",
 	INT:     "INT",
 	SEMI:    ";",
-
+	STRING:  "STRING",
 	// Infix ops
-	ADD: "+",
-	SUB: "-",
-	MUL: "*",
-	DIV: "/",
+	ADD:     "+",
+	SUB:     "-",
+	MUL:     "*",
+	DIV:     "/",
+	COMILLA: "\"",
 
 	ASSIGN: "=",
 }
@@ -83,6 +85,7 @@ func (l *Lexer) Lex() (Position, Token, string) {
 		l.pos.column++
 
 		switch r {
+
 		case '\n':
 			l.resetPosition()
 		case ';':
@@ -97,6 +100,8 @@ func (l *Lexer) Lex() (Position, Token, string) {
 			return l.pos, DIV, "/"
 		case '=':
 			return l.pos, ASSIGN, "="
+		case '"':
+			return l.pos, COMILLA, "\""
 		default:
 			if unicode.IsSpace(r) {
 				continue // nothing to do here, just move on
@@ -111,7 +116,12 @@ func (l *Lexer) Lex() (Position, Token, string) {
 				startPos := l.pos
 				l.backup()
 				lit := l.lexIdent()
-				return startPos, IDENT, lit
+
+				if len(lit) == 1 {
+					return startPos, IDENT, lit
+				} else {
+					return startPos, STRING, lit
+				}
 			} else {
 				return l.pos, ILLEGAL, string(r)
 			}
@@ -147,6 +157,13 @@ func (l *Lexer) lexInt() string {
 
 		l.pos.column++
 		if unicode.IsDigit(r) {
+			lit = lit + string(r)
+		} else {
+			// scanned something not in the integer
+			l.backup()
+			return lit
+		}
+		if r != '"' {
 			lit = lit + string(r)
 		} else {
 			// scanned something not in the integer
