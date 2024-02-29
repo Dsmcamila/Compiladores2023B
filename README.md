@@ -1,6 +1,6 @@
 # Compiladores2023B
 
-En este repositorio, exploramos y desarrollamos herramientas y técnicas avanzadas en el campo de los compiladores. Nuestro enfoque se centra en tres áreas clave:
+En este repositorio, exploramos y desarrollamos herramientas y técnicas sobre los compiladores. Nuestro enfoque se centra en tres áreas clave:
 
 - **Análisis de Estructuras de Compiladores**: Investigamos y analizamos las estructuras fundamentales de los compiladores, incluyendo el análisis léxico, la generación de código intermedio y la optimización de código. Estudiamos cómo estas estructuras facilitan la traducción de código fuente a código de máquina.
 
@@ -9,3 +9,6 @@ En este repositorio, exploramos y desarrollamos herramientas y técnicas avanzad
 - **Creación**: Desarrollamos y construimos herramientas y aplicaciones que facilitan la comprensión y el uso de los conceptos de compilación. Esto incluye la creación de documentación, tutoriales y ejemplos prácticos que demuestran cómo aplicar las técnicas de compilación en proyectos reales.
 
 Este proyecto es un esfuerzo colaborativo para fomentar el aprendizaje y la innovación en el campo de los compiladores, proporcionando recursos y herramientas que faciliten la comprensión y la aplicación de estas técnicas complejas.
+
+**Créditos**: maryito del cual se obtuvo el repositorio:
+Analisis-lexico-sintactico-Python = https://github.com/maryito/Analisis-lexico-sintactico-Python.git 
